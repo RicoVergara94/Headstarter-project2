@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import GutterlessList from "./components/GutterlessList";
+import AddItemComponent from "./components/AddItemComponent";
 import {
   query,
   collection,
@@ -37,6 +38,12 @@ export default function Home() {
     updateInventory();
   }, []);
 
+  const addNewInventoryItem = async (inventoryItemName, quantity) => {
+    await setDoc(doc(db, "inventory", inventoryItemName), {
+      quantity: quantity,
+    });
+  };
+
   const removeItem = async (item) => {
     const docRef = doc(db, `inventory/${item.name}`);
     const docSnap = await getDoc(docRef);
@@ -63,12 +70,15 @@ export default function Home() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        position: "relative",
+        // position: "relative",
         display: "grid",
         placeitems: "center",
       }}
     >
       <Typography variant="h1">Inventory Management</Typography>
+      <div id="add-item-section">
+        <AddItemComponent />
+      </div>
       <div>
         <GutterlessList
           inventory={inventory}

@@ -5,3 +5,7 @@
   outline: auto;
   outline-color: aquamarine;
 }
+#add-inventory-item {
+  text-align: center;
+  display: flex;
+}
