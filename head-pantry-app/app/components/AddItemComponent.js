@@ -12,6 +12,8 @@ import {
   setDoc,
 } from "firebase/firestore";
 
+import { ConstructionOutlined, Inventory } from "@mui/icons-material";
+
 const AddItemComponent = (props) => {
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -35,11 +37,19 @@ const AddItemComponent = (props) => {
   const handleFormSubmit = async () => {
     // removed event parameter
     const qty = Number(quantity);
-    await setDoc(doc(db, "inventory", itemName), { qty });
+    try {
+      await setDoc(doc(db, "inventory", itemName), { quantity: qty });
+    } catch (err) {
+      console.log(err);
+    }
+
+    props.setInventory([...props.inventory, itemName]);
   };
   return (
     <Box
       sx={{
+        position: "relative",
+        left: 50,
         display: "flex",
         alignItems: "center",
         "& > :not(style)": { m: 1 },

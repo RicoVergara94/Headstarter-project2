@@ -36,13 +36,7 @@ export default function Home() {
 
   useEffect(() => {
     updateInventory();
-  }, []);
-
-  const addNewInventoryItem = async (inventoryItemName, quantity) => {
-    await setDoc(doc(db, "inventory", inventoryItemName), {
-      quantity: quantity,
-    });
-  };
+  }, [inventory]);
 
   const removeItem = async (item) => {
     const docRef = doc(db, `inventory/${item.name}`);
@@ -77,7 +71,7 @@ export default function Home() {
     >
       <Typography variant="h1">Inventory Management</Typography>
       <div id="add-item-section">
-        <AddItemComponent />
+        <AddItemComponent inventory={inventory} setInventory={setInventory} />
       </div>
       <div>
         <GutterlessList
