@@ -18,21 +18,24 @@ const AddItemComponent = (props) => {
 
   const [isFormVisible, setFormVisible] = useState(false);
 
+  const [event, setEvent] = useState([]);
+
   const toggleFormVisibility = () => {
     setFormVisible(!isFormVisible);
   };
 
-  const handleItemNameSubmission = (itemName) => {
-    console.log(`this is the item name: ${itemName}`);
-  };
-  const handleQuantitySubmission = (quantity) => {
-    console.log(`this is the item's qty: ${quantity}`);
-  };
-  const handleFormSubmit = (event) => {
+  const handleItemNameChange = (event) => {
     event.preventDefault();
-    console.log(event.itemName);
-    console.log(event.quantity);
-    console.log("this is working");
+    setItemName(event.target.value);
+  };
+  const handleQuantityChange = (event) => {
+    event.preventDefault();
+    setQuantity(event.target.value);
+  };
+  const handleFormSubmit = async () => {
+    // removed event parameter
+    const qty = Number(quantity);
+    await setDoc(doc(db, "inventory", itemName), { qty });
   };
   return (
     <Box
@@ -48,40 +51,39 @@ const AddItemComponent = (props) => {
 
       {isFormVisible && (
         <div>
-          <FormControl onSubmit={handleFormSubmit}>
+          <FormControl>
             <TextField
               helperText="Click above and enter item's name"
               id="demo-helper-text-aligned"
               label="Item Name"
               value={itemName}
-              onSubmit={handleItemNameSubmission}
               type="text"
               style={
                 {
                   // paddingBottom: 100,
                 }
               }
-              onChange={(event) => {
-                setItemName(event.target.value);
-              }}
+              onChange={handleItemNameChange}
             />
             <TextField
               helperText="Click above & enter item's quantity"
               id="demo-helper-text-aligned-no-helper"
               label="Quantity"
               value={quantity}
-              onSubmit={handleQuantitySubmission}
+              // onSubmit={handleQuantitySubmission}
               style={
                 {
                   // paddingTop: 100,
                 }
               }
               type="text"
-              onChange={(event) => {
-                setQuantity(event.target.value);
-              }}
+              onChange={handleQuantityChange}
             />
-            <Button variant="Contained" onClick={handleFormSubmit}>
+            <Button
+              variant="Contained"
+              type="submit"
+              onClick={handleFormSubmit}
+            >
               Enter Values
             </Button>
           </FormControl>
