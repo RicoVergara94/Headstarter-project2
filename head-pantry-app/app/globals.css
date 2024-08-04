@@ -2,8 +2,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  outline: auto;
-  outline-color: black;
+  /* outline: auto; */
+  /* outline-color: black; */
 }
 #add-inventory-item {
   text-align: center;

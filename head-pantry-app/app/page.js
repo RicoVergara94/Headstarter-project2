@@ -63,23 +63,36 @@ export default function Home() {
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
         // position: "relative",
         display: "grid",
         placeitems: "center",
+        border: "2px solid grey",
+        flexDirection: "column",
       }}
     >
-      <Typography variant="h1">Inventory Management</Typography>
-      <div id="add-item-section">
+      <Typography
+        variant="h1"
+        sx={{ outlineColor: "black", backgroundColor: "yellow" }}
+      >
+        Inventory Management
+      </Typography>
+      <Box
+        id="add-item-section"
+        sx={{
+          outline: "black",
+        }}
+      >
         <AddItemComponent inventory={inventory} setInventory={setInventory} />
-      </div>
-      <div>
+      </Box>
+      <Box>
         <GutterlessList
           inventory={inventory}
           removeItem={removeItem}
           addItem={addItem}
         />
-      </div>
+      </Box>
     </Box>
   );
 }
