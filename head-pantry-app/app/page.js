@@ -38,6 +38,8 @@ export default function Home() {
     updateInventory();
   }, []);
 
+  useEffect(() => {}, [inventory]);
+
   const removeItem = async (item) => {
     const docRef = doc(db, `inventory/${item.name}`);
     const docSnap = await getDoc(docRef);
@@ -46,6 +48,18 @@ export default function Home() {
       if (quantity >= 1) {
         setDoc(docRef, { quantity: quantity - 1 });
       }
+
+      if (item.quantity === 0) return;
+      const updateQuantity = (itemName, newQuantity) => {
+        const updatedInventory = inventory.map((item) =>
+          itemName === item.name ? { ...item, quantity: newQuantity } : item
+        );
+
+        console.log(updatedInventory);
+        setInventory(updatedInventory);
+      };
+
+      updateQuantity(item.name, item.quantity - 1);
     } else {
       console.log("do nothing");
     }
@@ -56,6 +70,16 @@ export default function Home() {
     const docSnap = await getDoc(docRef);
     const { quantity } = docSnap.data();
     await setDoc(docRef, { quantity: quantity + 1 });
+
+    const updateQuantity = (itemName, newQuantity) => {
+      const updatedInventory = inventory.map((item) =>
+        itemName === item.name ? { ...item, quantity: newQuantity } : item
+      );
+
+      setInventory(updatedInventory);
+    };
+
+    updateQuantity(item.name, item.quantity + 1);
   };
 
   return (

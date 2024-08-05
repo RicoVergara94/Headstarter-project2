@@ -7,8 +7,9 @@ import Button from "@mui/material/Button";
 import { useEffect } from "react";
 
 const GutterlessList = (props) => {
-  useEffect(() => {}, [props.inventory]);
-
+  //   useEffect(() => {
+  //     console.log(`we're in GutterLess component: ${props.inventory}`);
+  //   }, [props.inventory]);
   return (
     <List
       sx={{
@@ -47,7 +48,7 @@ const GutterlessList = (props) => {
             </div>
           }
         >
-          <ListItemText primary={`${item.name}`} />
+          <ListItemText primary={`${item.name}: ${item.quantity}`} />
         </ListItem>
       ))}
     </List>
