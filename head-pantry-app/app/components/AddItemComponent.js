@@ -48,8 +48,8 @@ const AddItemComponent = (props) => {
   return (
     <Box
       sx={{
+        bgcolor: "lightgray",
         position: "relative",
-        left: 50,
         display: "flex",
         alignItems: "center",
         "& > :not(style)": { m: 1 },
@@ -68,11 +68,9 @@ const AddItemComponent = (props) => {
               label="Item Name"
               value={itemName}
               type="text"
-              style={
-                {
-                  // paddingBottom: 100,
-                }
-              }
+              style={{
+                backgroundColor: "white",
+              }}
               onChange={handleItemNameChange}
             />
             <TextField
@@ -80,12 +78,9 @@ const AddItemComponent = (props) => {
               id="demo-helper-text-aligned-no-helper"
               label="Quantity"
               value={quantity}
-              // onSubmit={handleQuantitySubmission}
-              style={
-                {
-                  // paddingTop: 100,
-                }
-              }
+              style={{
+                backgroundColor: "white",
+              }}
               type="text"
               onChange={handleQuantityChange}
             />
@@ -93,6 +88,9 @@ const AddItemComponent = (props) => {
               variant="Contained"
               type="submit"
               onClick={handleFormSubmit}
+              sx={{
+                backgroundColor: "tomato",
+              }}
             >
               Enter Values
             </Button>

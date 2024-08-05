@@ -13,6 +13,7 @@ const GutterlessList = (props) => {
   return (
     <List
       sx={{
+        outlineColor: "black",
         width: "100%",
         maxWidth: 360,
         bgcolor: "background.paper",
@@ -32,6 +33,7 @@ const GutterlessList = (props) => {
           secondaryAction={
             <div style={{ left: 10 }}>
               <Button
+                sx={{ marginLeft: 2 }}
                 className="Button"
                 variant="contained"
                 onClick={() => props.addItem(item)}
@@ -48,7 +50,14 @@ const GutterlessList = (props) => {
             </div>
           }
         >
-          <ListItemText primary={`${item.name}: ${item.quantity}`} />
+          <ListItemText
+            primary={`${item.name}: ${item.quantity}`}
+            sx={
+              {
+                //   p: 2,
+              }
+            }
+          />
         </ListItem>
       ))}
     </List>

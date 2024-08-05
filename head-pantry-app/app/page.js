@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import db from "../firebase";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Stack } from "@mui/material";
 import GutterlessList from "./components/GutterlessList";
 import AddItemComponent from "./components/AddItemComponent";
 import {
@@ -98,7 +98,12 @@ export default function Home() {
     >
       <Typography
         variant="h1"
-        sx={{ outlineColor: "black", backgroundColor: "yellow" }}
+        sx={{
+          outlineColor: "black",
+          backgroundColor: "yellow",
+          height: "120px",
+          width: "1000px",
+        }}
       >
         Inventory Management
       </Typography>
@@ -110,13 +115,13 @@ export default function Home() {
       >
         <AddItemComponent inventory={inventory} setInventory={setInventory} />
       </Box>
-      <Box>
+      <Stack overflow="auto">
         <GutterlessList
           inventory={inventory}
           removeItem={removeItem}
           addItem={addItem}
         />
-      </Box>
+      </Stack>
     </Box>
   );
 }
