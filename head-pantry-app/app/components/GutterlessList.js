@@ -4,8 +4,11 @@ import ListItemText from "@mui/material/ListItemText";
 import CommentIcon from "@mui/icons-material/Comment";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
+import { useEffect } from "react";
 
 const GutterlessList = (props) => {
+  useEffect(() => {}, [props.inventory]);
+
   return (
     <List
       sx={{

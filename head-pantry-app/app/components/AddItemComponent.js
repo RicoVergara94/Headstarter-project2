@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button, FormControl } from "@mui/material";
 import { useState } from "react";
-import { db } from "../../firebase";
+import db from "../../firebase";
 import {
   query,
   collection,
@@ -43,7 +43,7 @@ const AddItemComponent = (props) => {
       console.log(err);
     }
 
-    props.setInventory([...props.inventory, itemName]);
+    props.setInventory([...props.inventory, { name: itemName, quantity: qty }]);
   };
   return (
     <Box

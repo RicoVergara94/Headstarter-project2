@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
+import db from "../firebase";
 import { Box, Typography, Button } from "@mui/material";
 import GutterlessList from "./components/GutterlessList";
 import AddItemComponent from "./components/AddItemComponent";
@@ -36,7 +36,7 @@ export default function Home() {
 
   useEffect(() => {
     updateInventory();
-  }, [inventory]);
+  }, []);
 
   const removeItem = async (item) => {
     const docRef = doc(db, `inventory/${item.name}`);
